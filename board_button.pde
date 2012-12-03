@@ -1,8 +1,8 @@
-class ColoredButton {
+class BoardButton {
   float x, y, w, h;
   int bg, pressed_bg;
 
-  ColoredButton() {
+  BoardButton() {
 
   }
 

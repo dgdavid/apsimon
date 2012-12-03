@@ -1,6 +1,6 @@
 class Board {
   float x, y, board_width, board_height;
-  ColoredButton[] buttons = new ColoredButton[4];
+  BoardButton[] buttons = new BoardButton[4];
   
   Board(float posX, float posY, float w, float h) {
     x = posX;
@@ -20,7 +20,7 @@ class Board {
 
     
     for(int i = 0; i < buttons.length; i++) {
-     buttons[i] =  new ColoredButton();
+     buttons[i] =  new BoardButton();
      buttons[i].x = buttons_position[i][0];
      buttons[i].y =  buttons_position[i][1];
      buttons[i].bg =  buttons_colors[i];
