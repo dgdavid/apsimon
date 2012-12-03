@@ -7,16 +7,16 @@ Game game;        // Game object
 Player player;    // Player object
 CPU cpu;          // CPU object
 Board board;      // Board object
+VerticalLayout layout; 
 int gridX;
 int gridY;
 
-void setup() {
-  size(width, height);
-  gridX = width/6;
-  gridY = height/8;
+BoardButton[] buttons = new BoardButton[4];
 
+void setup() {
   game = new Game();
   player = new Player();
   cpu = new CPU();
-  board = new Board(gridX, gridY * 3, gridX * 4, gridY * 4);
+  layout = new VerticalLayout();
+  layout.set_layout(board, buttons);
 }
