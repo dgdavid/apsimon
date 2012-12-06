@@ -1,5 +1,6 @@
 
 class CPU {
+  int[] current_sequence;
   
   CPU() {
      
@@ -7,7 +8,7 @@ class CPU {
   }
   
     
-  int[] new_sequence() {
+  void new_sequence() {
     int[] cpu_sequence = new int[level];
     Random randomGenerator = new Random();
     
@@ -15,7 +16,7 @@ class CPU {
       cpu_sequence[idx] = randomGenerator.nextInt(4);
     }
    
-    return cpu_sequence;
+    current_sequence = cpu_sequence;
     
   }
   
