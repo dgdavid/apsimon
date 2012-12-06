@@ -19,7 +19,18 @@ class VerticalLayout {
     
   void set_buttons(Board board, BoardButton buttons[]) {
     
-    int[] buttons_colors = { 255, 250, 100, 150 };
+    color colorgreen = color(150,255,150),
+          colorred = color(255,150,150),
+          coloryellow = color(255,255,150),
+          colorblue = color(150,150,255);
+    
+    color flashcolorgreen = color(0,255,0),
+          flashcolorred = color(255,0,0),
+          flashcoloryellow = color(255,255,0),
+          flashcolorblue = color(0,0,255);
+    
+    int[] buttons_colors = { colorgreen, colorred, coloryellow, colorblue };
+    
     float[][] buttons_position = {  { board.x, board.y },
                                     { board.width/2 + board.x, board.y },
                                     { board.x, board.height/2 + board.y },
