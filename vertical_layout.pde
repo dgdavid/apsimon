@@ -1,8 +1,25 @@
 class VerticalLayout {
   
   VerticalLayout() {
+
+  }
+ 
+  void show_tittle() {
+    fill(color(255,255,255));    
+    textSize(50);
+    //textAlign(CENTER);
+    text("APSIMON",gridX,gridY);
+  }
   
-  } 
+   void show_level_info() {
+    textSize(15);
+    text("LEVEL: " + level, gridX, gridY * 2);
+  }
+  
+  void show_score_info() {
+    textSize(15);
+    text("SCORE: " + score, gridX * 4, gridY * 2);
+  }
   
   void set_layout(Board board, BoardButton buttons[]) {
     size(width, height);
