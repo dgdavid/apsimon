@@ -10,4 +10,10 @@ class BoardButton {
     fill(bg);
     rect(x, y, w, h);
   }
+  
+  void show_pressed() {
+    fill(pressed_bg);
+    rect(x, y, w, h);
+  }
+  
 }
