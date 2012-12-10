@@ -8,6 +8,13 @@ class Game {
     game_is_over = false;
   }
 
+  boolean is_started() {
+    return game_started;
+  }
+
+  boolean is_over() {
+    return game_is_over;
+  }
 
   void start_game() {
     game_started = true;
@@ -23,14 +30,6 @@ class Game {
 
   void over() {
     game_is_over = true;
-  }
-
-  boolean is_started() {
-    return game_started;
-  }
-
-  boolean is_over() {
-    return game_is_over;
   }
 
   void new_sequence() {
@@ -57,5 +56,4 @@ class Game {
   boolean has_been_successful(int[]user_sequence) {
     return Arrays.equals(current_sequence, user_sequence);
   }
-
 }
