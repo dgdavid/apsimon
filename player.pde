@@ -16,7 +16,6 @@ class Player {
         if(buttons[i].has_been_pressed()){
           user_sequence[last_index] = i;
           buttons[i].set_as_pressed();
-          //redraw(); // FIXME: no debería estar por aquí...
           last_index++;
         }
       }

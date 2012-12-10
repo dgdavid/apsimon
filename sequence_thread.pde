@@ -22,7 +22,6 @@ class SequenceThread extends Thread {
     while(i < sequence.length || millis() - lastTime < 500) {
       if(millis() - lastTime > 500) {
         buttons[sequence[i]].set_as_pressed();
-        println(sequence[i]);
         i++;
         lastTime= millis();
       }

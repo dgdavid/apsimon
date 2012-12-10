@@ -32,12 +32,11 @@ void setup() {
   noLoop();
   game = new Game();
   player = new Player();
-  //cpu.new_sequence();
   layout = new VerticalLayout();
   layout.set_layout(board, buttons);
   player.start_new_level(level);
 
-  println(System.getProperty("java.vendor"));
+  //println(System.getProperty("java.vendor"));
   //song = minim.loadFile("sound.mp3");
   //song.play();
 
@@ -87,7 +86,6 @@ void mousePressed() {
 
 void mouseReleased() {
   if( !game.sequence_thread.is_running && player.already_finished() ) {
-  println("successful?: " + game.has_been_successful(player.user_sequence));
     if(game.has_been_successful(player.user_sequence)) {
       next_level();
     } else {

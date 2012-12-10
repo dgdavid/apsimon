@@ -32,7 +32,6 @@ class VerticalLayout {
 
   void set_board(Board board, BoardButton buttons[], float gridX, float gridY) {
     board = new Board(gridX, gridY * 3, gridX * 4, gridY * 4);
-    println(board.height);
     set_buttons(board, buttons);
   }
 
@@ -81,7 +80,7 @@ class VerticalLayout {
     textAlign(CENTER, CENTER);
     text("GAME OVER :(", width/2, height/2);
   }
-  
+
   void show_start_info() {
     fill(20);
     rect(0, height/2 - 25, width, 50);
