@@ -1,7 +1,6 @@
 class Game {
-  boolean game_started;
-  boolean game_is_over;
-  int[] current_sequence, previous_sequence = new int[0];
+  boolean game_started, game_is_over;
+  int[] current_sequence = new int[0], previous_sequence = new int[0];
   SequenceThread sequence_thread;
 
   Game() {
@@ -25,7 +24,7 @@ class Game {
   void over() {
     game_is_over = true;
   }
-  
+
   boolean is_started() {
     return game_started;
   }
@@ -35,16 +34,19 @@ class Game {
   }
 
   void new_sequence() {
-    //previous_sequence = current_sequence;
+    previous_sequence = current_sequence;
     current_sequence = new int[level];
     Random randomGenerator = new Random();
 
-    //for (int idx = 0; idx < level - previous_sequence.length; idx++) {
-    for (int idx = 0; idx < level; idx++) {
+    //previous sequence...
+    for (int idx = 0; idx < previous_sequence.length; idx++) {
+      current_sequence[idx] = previous_sequence[idx];
+    }
+
+    //new sequence...
+    for(int idx = previous_sequence.length; idx < current_sequence.length; idx++) {
       current_sequence[idx] = randomGenerator.nextInt(buttons.length);
     }
-    
-    
   }
 
   void show_current_sequence(){
