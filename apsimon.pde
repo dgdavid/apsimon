@@ -32,14 +32,12 @@ void setup() {
   noLoop();
   game = new Game();
   player = new Player();
-  cpu.new_sequence();
+  //cpu.new_sequence();
   layout = new VerticalLayout();
   layout.set_layout(board, buttons);
-
-  game.start_game();
   player.start_new_level(level);
 
-  //println(System.getProperty("java.vendor"));
+  println(System.getProperty("java.vendor"));
   //song = minim.loadFile("sound.mp3");
   //song.play();
 
@@ -54,7 +52,10 @@ void startGame() {
 
 
 void draw() {
-  if(!game.is_over()) {
+ 
+  if(game.is_over()) {
+    layout.show_game_over(); 
+  } else {
     background(155);
     layout.show_tittle();
     layout.show_level_info();
@@ -64,21 +65,29 @@ void draw() {
     //media_player.start();
     //song = minim.loadFile("sound13.mp3");
     //song.play();
-  } else {
-    layout.show_game_over();
   }
+  
+   if(!game.is_started()) {
+    layout.show_start_info();
+  }
+  
 }
 
 void mousePressed() {
-  println("Is running?: " + game.sequence_thread.is_running);
-  println("Player has finished?: " + player.already_finished());
+  if(!game.is_started()) {
+    game.start_game();
+    redraw();
+  }
+  
   if(!game.sequence_thread.is_running && !player.already_finished()){
     player.recreate_sequence();
+    redraw();
   }
 }
 
 void mouseReleased() {
   if( !game.sequence_thread.is_running && player.already_finished() ) {
+  println("successful?: " + game.has_been_successful(player.user_sequence));
     if(game.has_been_successful(player.user_sequence)) {
       next_level();
     } else {
@@ -95,4 +104,5 @@ void next_level() {
 
 void game_finished() {
   game.over();
+  redraw();
 }

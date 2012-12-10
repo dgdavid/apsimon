@@ -81,5 +81,14 @@ class VerticalLayout {
     textAlign(CENTER, CENTER);
     text("GAME OVER :(", width/2, height/2);
   }
+  
+  void show_start_info() {
+    fill(20);
+    rect(0, height/2 - 25, width, 50);
+    fill(color(255, 204, 0));
+    textSize(35);
+    textAlign(CENTER, CENTER);
+    text("TOUCH SCREEN TO BEGIN", width/2, height/2);
+  }
 
 }

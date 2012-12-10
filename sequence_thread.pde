@@ -10,28 +10,28 @@ class SequenceThread extends Thread {
     sequence = current_sequence;
   }
 
-  void start () {
+  void start() {
     is_running = true;
     super.start();
   }
 
-  void run () {
+  void run() {
     int i = 0;
     int lastTime = millis();
     loop();
     while(i < sequence.length || millis() - lastTime < 500) {
       if(millis() - lastTime > 500) {
-        buttons[sequence[i]].is_pressed = true;
+        buttons[sequence[i]].set_as_pressed();
         println(sequence[i]);
         i++;
         lastTime= millis();
       }
     }
-    noLoop();
     quit();
   }
 
   void quit() {
+    noLoop();
     is_running = false;
     interrupt();
   }
