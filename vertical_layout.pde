@@ -76,9 +76,16 @@ class VerticalLayout {
   void show_game_over() {
     background(50);
     fill(color(255, 204, 0));
-    textSize(50);
     textAlign(CENTER, CENTER);
+    textSize(25);
+    text("You lose in level " + level + " with " + score + " point(s)", width/2, height/2 - 100);
+    textSize(50);
     text("GAME OVER :(", width/2, height/2);
+    if(!IN_ANDROID) {
+      textSize(12);
+      text("[press «r» to restart game]", width/2, height/2 + 100);
+    }
+
   }
 
   void show_start_info() {

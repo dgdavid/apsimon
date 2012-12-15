@@ -9,6 +9,7 @@ import java.util.Random;
 
 int level = 1;
 int score = 0;
+boolean IN_ANDROID = System.getProperty("java.vendor") == "The Android Project";
 
 APMediaPlayer media_player;
 Minim minim;
@@ -23,7 +24,9 @@ int gridY;
 BoardButton[] buttons = new BoardButton[4];
 
 void setup() {
-  size (500,500);
+  int screen_width = IN_ANDROID ? width : 500;
+  int screen_height = IN_ANDROID ? height : 600;
+  size (screen_width, screen_height);
   frameRate(5);
   //media_player = new APMediaPlayer(this);
   //media_player.setMediaFile("sound.mp3");
@@ -91,6 +94,13 @@ void mouseReleased() {
     } else {
       game_finished();
     }
+  }
+}
+
+void keyPressed() {
+  if(game.is_over() && key == 'r') {
+    setup();
+    redraw();
   }
 }
 
