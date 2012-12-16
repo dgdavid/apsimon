@@ -1,24 +1,34 @@
 class VerticalLayout {
+  int previous_level;
+  color title_color;
 
   VerticalLayout() {
-
+    previous_level = level;
+    new_title_color();
   }
 
   void show_tittle() {
-    fill(color(255,255,255));
+    if(previous_level != level) {
+      previous_level = level;
+      new_title_color();
+    }
+    fill(title_color);
     textSize(50);
     textAlign(CENTER);
+    textFont(loadFont("Homestead-Display-48.vlw"));
     text("APSIMON", width/2, gridY);
   }
 
   void show_level_info() {
-    textSize(15);
+    fill(color(255,255,255));
+    textSize(20);
     textAlign(LEFT);
     text("LEVEL: " + level, gridX, gridY * 2);
   }
 
   void show_score_info() {
-    textSize(15);
+    fill(color(255,255,255));
+    textSize(20);
     textAlign(RIGHT);
     text("SCORE: " + score, gridX * 5, gridY * 2);
   }
@@ -67,6 +77,29 @@ class VerticalLayout {
     }
   }
 
+  void show_background() {
+
+    // http://www.openprocessing.org/sketch/9060
+
+    loadPixels();
+    float increment = map(0, 0, width, 0.005, 0.3);
+    float xoff = 0.0; // Start xoff at 0
+    float yoff = 0.0;   // For every xoff, start yoff at 0
+    // For every x,y coordinate in a 2D space, calculate a noise value and produce a brightness value
+    for (int x = 0; x < width; x++) {
+      xoff += increment;   // Increment xoff
+      //yoff = 0.0;
+      for (int y = 0; y < height; y++) {
+        yoff += increment; // Increment yoff
+        // Calculate noise and scale by 155
+        float bright = noise(xoff,yoff)*155;
+        // Set each pixel onscreen to a grayscale value
+        pixels[x+y*width] = color(bright);
+      }
+    }
+    updatePixels();
+  }
+
   void show_buttons() {
     for(int i = 0; i < buttons.length; i++) {
       buttons[i].show();
@@ -79,22 +112,27 @@ class VerticalLayout {
     textAlign(CENTER, CENTER);
     textSize(25);
     text("You lose in level " + level + " with " + score + " point(s)", width/2, height/2 - 100);
-    textSize(50);
-    text("GAME OVER :(", width/2, height/2);
+    textSize(60);
+    text("GAME OVER", width/2, height/2);
     if(!IN_ANDROID) {
+      textFont(loadFont("DroidSans-16.vlw"));
       textSize(12);
-      text("[press «r» to restart game]", width/2, height/2 + 100);
+      text("[press «r» to restart game or «e» to exit]", width/2, height/2 + 100);
     }
 
   }
 
   void show_start_info() {
     fill(20);
-    rect(0, height/2 - 25, width, 50);
+    rect(0, height/2 - 25, width, 60);
     fill(color(255, 204, 0));
     textSize(35);
     textAlign(CENTER, CENTER);
     text("TOUCH SCREEN TO BEGIN", width/2, height/2);
+  }
+
+  void new_title_color() {
+    title_color = color(random(255),random(255),random(255));
   }
 
 }
