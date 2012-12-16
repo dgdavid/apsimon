@@ -17,15 +17,13 @@ void setup() {
 
   level = 1;
   score = 0;
-  int screen_width = IN_ANDROID ? width : 500;
-  int screen_height = IN_ANDROID ? height : 600;
 
-  size (500, 600);
+  if(!IN_ANDROID) {
+    size (500, 600);
+  }
   frameRate(5);
-  //media_player = new APMediaPlayer(this);
-  //media_player.setMediaFile("sound.mp3");
-
   noLoop();
+
   game = new Game();
   player = new Player();
   layout = new VerticalLayout();
