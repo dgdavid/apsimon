@@ -1,10 +1,14 @@
 class VerticalLayout {
   int previous_level;
   color title_color;
+  float gridX, gridY;      // layout divided in grid for elements positioning
 
   VerticalLayout() {
     previous_level = level;
     new_title_color();
+    gridX = width/6;     // columns
+    gridY = height/8;    // rows
+    board = new Board(gridX, gridY * 3, gridX * 4, gridY * 4);
   }
 
   void show_tittle() {
@@ -35,13 +39,6 @@ class VerticalLayout {
 
   void set_layout(Board board, BoardButton buttons[]) {
     size(width, height);
-    gridX = width/6;
-    gridY = height/8;
-    set_board(board, buttons, gridX, gridY);
-  }
-
-  void set_board(Board board, BoardButton buttons[], float gridX, float gridY) {
-    board = new Board(gridX, gridY * 3, gridX * 4, gridY * 4);
     set_buttons(board, buttons);
   }
 
@@ -75,6 +72,12 @@ class VerticalLayout {
       buttons[i].w = board.width/2;
       buttons[i].h = board.height/2;
     }
+  }
+
+  void show_board() {
+    fill(255);
+    noStroke();
+    rect(board.x - 3, board.y - 3, board.width + 6, board.height + 6);
   }
 
   void show_background() {
@@ -129,6 +132,22 @@ class VerticalLayout {
     textSize(35);
     textAlign(CENTER, CENTER);
     text("TOUCH SCREEN TO BEGIN", width/2, height/2);
+  }
+
+  void show_next_level_info() {
+    print("yeah");
+    show_background();
+    fill(title_color);
+    textAlign(CENTER, CENTER);
+    textFont(loadFont("Homestead-Display-48.vlw"));
+    textSize(65);
+    textAlign(CENTER, CENTER);
+    text("GOOD!!", width/2, height/2);
+    fill(color(255, 204, 0));
+    textSize(30);
+    textFont(loadFont("DroidSans-16.vlw"));
+    text("Going to next level ", width/2, height/2 + 100);
+
   }
 
   void new_title_color() {

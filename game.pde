@@ -1,3 +1,5 @@
+import java.util.Random;
+
 class Game {
   boolean game_started, game_is_over;
   int[] current_sequence = new int[0], previous_sequence = new int[0];
