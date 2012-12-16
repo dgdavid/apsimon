@@ -28,6 +28,8 @@ class Game {
     score+= level;
     level++;
     start_game();
+    media_player.load_track("level_up.mp3");
+    media_player.play();
   }
 
   void over() {

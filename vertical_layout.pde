@@ -56,6 +56,7 @@ class VerticalLayout {
 
     color[] buttons_colors = { colorgreen, colorred, coloryellow, colorblue };
     color[] buttons_flash_colors = { flashcolorgreen, flashcolorred, flashcoloryellow, flashcolorblue };
+    String[] buttons_audio = {"button1.mp3", "button2.mp3", "button3.mp3", "button4.mp3" };
 
     float[][] buttons_position = {  { board.x, board.y },
                                     { board.width/2 + board.x, board.y },
@@ -69,6 +70,7 @@ class VerticalLayout {
       buttons[i].y = buttons_position[i][1];
       buttons[i].bg = buttons_colors[i];
       buttons[i].pressed_bg = buttons_flash_colors[i];
+      buttons[i].audio = buttons_audio[i];
       buttons[i].w = board.width/2;
       buttons[i].h = board.height/2;
     }

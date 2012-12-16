@@ -2,6 +2,7 @@ class BoardButton {
   float x, y, w, h;
   int bg, pressed_bg;
   boolean is_pressed = false;
+  String audio;
 
   BoardButton() {
 
@@ -12,6 +13,8 @@ class BoardButton {
     color current_bg = (is_pressed)  ? pressed_bg : bg;
     fill(current_bg);
     rect(x, y, w, h);
+    media_player.load_track(audio);
+    media_player.play();
     is_pressed = false;
   }
 
