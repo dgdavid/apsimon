@@ -13,8 +13,10 @@ class BoardButton {
     color current_bg = (is_pressed)  ? pressed_bg : bg;
     fill(current_bg);
     rect(x, y, w, h);
-    media_player.load_track(audio);
-    media_player.play();
+    if (is_pressed) {
+      media_player.load_track(audio);
+      media_player.play();
+    }
     is_pressed = false;
   }
 
