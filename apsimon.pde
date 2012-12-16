@@ -7,8 +7,8 @@ import ddf.minim.AudioPlayer;
 import apwidgets.APMediaPlayer;
 import java.util.Random;
 
-int level = 1;
-int score = 0;
+int level;
+int score;
 boolean IN_ANDROID = System.getProperty("java.vendor") == "The Android Project";
 
 APMediaPlayer media_player;
@@ -18,14 +18,20 @@ Game game;        // Game object
 Player player;    // Player object
 Board board;      // Board object
 VerticalLayout layout;
+PImage o_bg;
 int gridX;
 int gridY;
 
 BoardButton[] buttons = new BoardButton[4];
 
 void setup() {
+  level = 1;
+  score = 0;
   int screen_width = IN_ANDROID ? width : 500;
   int screen_height = IN_ANDROID ? height : 600;
+  o_bg = loadImage("simonsays-bg.jpg");
+  o_bg.resize(screen_width, screen_height);
+
   size (screen_width, screen_height);
   frameRate(5);
   //media_player = new APMediaPlayer(this);
@@ -54,11 +60,11 @@ void startGame() {
 
 
 void draw() {
- 
+
   if(game.is_over()) {
-    layout.show_game_over(); 
+    layout.show_game_over();
   } else {
-    background(155);
+    layout.show_background();
     layout.show_tittle();
     layout.show_level_info();
     layout.show_score_info();
@@ -68,11 +74,11 @@ void draw() {
     //song = minim.loadFile("sound13.mp3");
     //song.play();
   }
-  
+
    if(!game.is_started()) {
     layout.show_start_info();
   }
-  
+
 }
 
 void mousePressed() {
@@ -80,7 +86,7 @@ void mousePressed() {
     game.start_game();
     redraw();
   }
-  
+
   if(!game.sequence_thread.is_running && !player.already_finished()){
     player.recreate_sequence();
     redraw();
@@ -98,9 +104,19 @@ void mouseReleased() {
 }
 
 void keyPressed() {
-  if(game.is_over() && key == 'r') {
-    setup();
-    redraw();
+  if(game.is_over()) {
+    switch(key) {
+      case 'r':
+      case 'R':
+        setup();
+        redraw();
+        break;
+      case 'e':
+      case 'E':
+        exit();
+        break;
+      default:
+    }
   }
 }
 
@@ -111,6 +127,8 @@ void next_level() {
 }
 
 void game_finished() {
-  game.over();
-  redraw();
+  if(!game.is_over()) {
+    game.over();
+    redraw();
+  }
 }
