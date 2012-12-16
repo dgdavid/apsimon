@@ -2,6 +2,7 @@ class VerticalLayout {
   int previous_level;
   color title_color;
   float gridX, gridY;      // layout divided in grid for elements positioning
+  PFont droidsans, homestead;
 
   VerticalLayout() {
     previous_level = level;
@@ -9,6 +10,8 @@ class VerticalLayout {
     gridX = width/6;     // columns
     gridY = height/8;    // rows
     board = new Board(gridX, gridY * 3, gridX * 4, gridY * 4);
+    droidsans = createFont("DroidSans", 16);
+    homestead = createFont("Homestead-Display", 48);
   }
 
   void show_tittle() {
@@ -19,7 +22,7 @@ class VerticalLayout {
     fill(title_color);
     textSize(50);
     textAlign(CENTER);
-    textFont(loadFont("Homestead-Display-48.vlw"));
+    textFont(homestead);
     text("APSIMON", width/2, gridY);
   }
 
@@ -120,7 +123,7 @@ class VerticalLayout {
     textSize(60);
     text("GAME OVER", width/2, height/2);
     if(!IN_ANDROID) {
-      textFont(loadFont("DroidSans-16.vlw"));
+      textFont(droidsans);
       textSize(12);
       text("[press «r» to restart game or «e» to exit]", width/2, height/2 + 100);
     }
@@ -141,13 +144,13 @@ class VerticalLayout {
     show_background();
     fill(title_color);
     textAlign(CENTER, CENTER);
-    textFont(loadFont("Homestead-Display-48.vlw"));
+    textFont(homestead);
     textSize(65);
     textAlign(CENTER, CENTER);
     text("GOOD!!", width/2, height/2);
     fill(color(255, 204, 0));
     textSize(30);
-    textFont(loadFont("DroidSans-16.vlw"));
+    textFont(droidsans);
     text("Going to next level ", width/2, height/2 + 100);
 
   }
