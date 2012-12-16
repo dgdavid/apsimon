@@ -20,7 +20,7 @@ void setup() {
   int screen_width = IN_ANDROID ? width : 500;
   int screen_height = IN_ANDROID ? height : 600;
 
-  size (width, height);
+  size (500, 600);
   frameRate(5);
   //media_player = new APMediaPlayer(this);
   //media_player.setMediaFile("sound.mp3");
