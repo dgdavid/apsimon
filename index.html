@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset='utf-8'>
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <link href='https://fonts.googleapis.com/css?family=Architects+Daughter' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" type="text/css" href="stylesheets/stylesheet.css" media="screen" />
+    <link rel="stylesheet" type="text/css" href="stylesheets/pygment_trac.css" media="screen" />
+    <link rel="stylesheet" type="text/css" href="stylesheets/print.css" media="print" />
+
+    <!--[if lt IE 9]>
+    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+
+    <title>Apsimon by dgdavid</title>
+  </head>
+
+  <body>
+    <header>
+      <div class="inner">
+        <h1>Apsimon</h1>
+        <h2></h2>
+        <a href="https://github.com/dgdavid/apsimon" class="button"><small>View project on</small>GitHub</a>
+      </div>
+    </header>
+
+    <div id="content-wrapper">
+      <div class="inner clearfix">
+        <section id="main-content">
+          <h1>PGL: APSimon, Simon says para Android sobre Processing</h1>
+
+<p>:Author:    Javier Morales y David Díaz
+:Date:      24/11/2012</p>
+
+<h2>Acerca de este documento</h2>
+
+<p>La intención de este documento es servir de «dossier» en el que recoger las
+ideas iniciales, borrador y objetivo  para el proyecto de «Desarrollo de Juegos
+en 2D» de la asignatura de «Programación Multimedia y Dispositivos Móviles».</p>
+
+<h2>El proyecto</h2>
+
+<h3>La idea</h3>
+
+<p>Se intentará implementar el conocido y popular juego de los 80
+<a href="http://en.wikipedia.org/wiki/Simon_(game">«Simon says»</a>), creado por Ralph Baer
+en 1978, para la plataforma Android haciendo uso del lenguaje de programación
+<a href="http://processing.org">«Processing»</a>, distribuido bajo licencia GNU/GPL.</p>
+
+<h3>Objetivo</h3>
+
+<p>Disponer, al menos, de una versión básica del juego consistente en repetir la
+secuencia aleatoria de N elementos de 4 posibles, generada por el programa y
+representada visual y acústicamente. </p>
+
+<p>Con cada acierto el nivel de dificultad, entendido como la longitud de la
+secuencia, se irá incrementando dando el juego por finalizado al primer fallo.</p>
+
+<h3>Alcance</h3>
+
+<p>Dado que se trata de un proyecto con fines didácticos, la utilidad del mismo no
+pretende ir más allá de su uso en clase para ganar experiencia y bagaje en el
+uso del lenguaje utilizado, resolución de problemas durante el desarrollo e
+interacción, desde el punto de vista del desarrollo, con el terminal.</p>
+
+<p>No obstante, se pone al alcance de toda persona que quiera hacer uso del mismo,
+cualesquiera sean sus fines, desde el mismo instante en el que se decide hacer
+uso de <a href="http://github.com">GitHub</a> como «repositorio origen»
+[<a href="https://github.com/JAvilp/apsimon">https://github.com/JAvilp/apsimon</a>], permitiendo así el acceso al proyecto y su
+evolución durante el desarrollo del mismo.</p>
+
+<h2>Descripción general</h2>
+
+<h3>Perspectiva del proyecto</h3>
+
+<p>El usuario interactuará con el terminal haciendo uso de la pantalla táctil, a
+fin de reproducir la secuencia sugerida.</p>
+
+<h3>Funciones de la aplicación</h3>
+
+<p>La aplicación ha de generar una secuencia aleatoria de N elementos en base a 4
+posibles que posteriormente representará visual y acústicamente.</p>
+
+<p>Además, mostrará al usuario, haciendo el mayor uso posible de las funciones
+provistas en la API de Processing:</p>
+
+<ul>
+<li>Información del nivel actual (de 1 en adelante).</li>
+<li>Información de la puntuación actual (de 1 en adelante, siendo un
+«acumulador» de los aciertos, contados éstos en base a la longitud de la
+secuencia).</li>
+<li>Un «tablero», compuesto de los 4 elementos posibles de la secuencia, con el
+que interactuar a fin de conseguir el objetivo.</li>
+<li>Texto informativo, de acierto o fracaso, según corresponda.</li>
+</ul><h3>Presentación de la aplicación</h3>
+
+<p>La presentación se hará mediante una interfaz limpia y sencilla que ha de
+adaptarse, en la medida de lo posible, al tamaño del dispositivo en el que se
+esté ejecutando, dando mayor relevancia a los elementos con los que ha de
+interactuar el usuario. </p>
+
+<p>Para ello se ha decidido que el «lienzo» sobre el que se apoya Processing
+coincida con el tamaño del disponible, subdividiéndolo mediante «una rejilla»
+de 8 filas y 6 columnas. Esto debería permitir un mejor control sobre el
+posicionamiento de los elementos así como un «redimendionado» dinámico. </p>
+
+<p>.Boceto del Layout subdivido en 8 filas y 6 columnas</p>
+
+<p>image::images/apsimon_layout_divide_into_8rows_and_6cols.png["Boceto del layout subdivido en rejilla de 8 filas y 6 columnas"]</p>
+
+<p>.Disposición de los elementos en el layout vertical
+image::images/apsimon_elements_in_vertical_layout.png["Disposición de los elementos en el layout vertical"]</p>
+
+<p>.Disposición de los elementos en el layout horizontal 
+image::images/apsimon_elements_in_horizontal_layout.png["Disposición de los elementos en el layout horizontal"]</p>
+
+<h3>Características del usuario</h3>
+
+<p>Inicialmente, dado el referido carácter «práctico»/didáctico del proyecto,
+el perfil del «usuario final» coincide con el perfil de los desarrolladores:
+alumnos en prácticas. Por lo tanto, se les presupone usuarios avanzados, sin
+dificultad para desenvolverse con su terminal móvil.</p>
+
+<h3>Recursos para el desarrollo</h3>
+
+<p>Además del uso del ya mencionado lenguaje de programación, Processing, serán
+utilizados:</p>
+
+<ul>
+<li>La librería <a href="http://code.google.com/p/apwidgets/">APWidgets</a>, para el trabajo
+con el audio y algunos otros elementos.</li>
+<li>La clase
+<a href="http://docs.oracle.com/javase/6/docs/api/java/util/Random.html">Random</a> para
+la generación aleatoria de la secuencia.</li>
+<li>
+<a href="http://git-scm.com/">Git</a> para el trabajo en grupo footnote:[En muchos casos
+se está y se estará trabajando en un solo equipo, por lo que la información
+del «commiter» no está vinculada al trabajo/peso real de cada miembro del
+equipo], control de versiones y «sincronización» con el repositorio alojado
+en GitHub.</li>
+</ul><h3>Otros recursos</h3>
+
+<ul>
+<li>
+<a href="http://soundcloud.com">SoundCloud</a> para la búsqueda y elección de las pistas
+de audio que sean necesarias.</li>
+<li>
+<a href="http://www.methods.co.nz/asciidoc/">Asciidoc</a> para la generación de este
+documento.</li>
+<li>
+<a href="https://moqups.com/">Moqups</a> para la creación de mockups</li>
+<li>
+<a href="http://www.openprocessing.org">OpenProcessing</a>, como «fuente de
+conocimiento» en la que «ojear» algo de código.
+[<a href="http://www.openprocessing.org/sketch/20312">http://www.openprocessing.org/sketch/20312</a>]</li>
+<li>
+<a href="http://www.learningprocessing.com">http://www.learningprocessing.com</a> para visualizar ejemplos con enfoques
+orientados a objeto (POO).</li>
+</ul><h2>Estado actual</h2>
+
+<h3>Presentación y mockups</h3>
+
+<p>A pesar de que aún no se tiene el layout completamente implementado, los
+siguientes mockups dan idea visual de como quedaría la aplicación
+definitivamente en el terminal.</p>
+
+<p>.Pantalla con todos los elementos/colores «desactivados» (no presionados o no sugeridos por la máquina)
+image::images/apsimon_mockup_all_buttons_deactivated.png["Todos los botones «desactivados"]</p>
+
+<p>.Pantalla con un elemento/color/botón activado (el rojo)
+image::images/apsimon_mockup_one_button_activated.png["Un botón activado"]</p>
+
+<p>.Pantalla de «Siguiente nivel»
+image::images/apsimon_mockup_next_level.png["Siguiente nivel"]</p>
+
+<p>.Pantalla de «Game Over!»
+image::images/apsimon_mockup_game_over.png["Game Over"]</p>
+
+<h3>Clases y objetos</h3>
+
+<p>En un primer brainstorming pensamos que las clases a implementar podrían ser:</p>
+
+<ul>
+<li>Game, que representaría al juego en sí.</li>
+<li>Board, para la construcción del tablero.</li>
+<li>ColouredButton, para instanciar cada
+uno de los 4 «cuadrantes» que se encargarán de autoiluminarse y emitir sonido
+cuando son presionados.</li>
+<li>CPU, que sería el encargado de generar la secuencia aleatoria que el
+usuario debe repetir.</li>
+<li>Player, que se corresponde con el jugador.</li>
+</ul><p>Las primeras (y sucesivas) implementaciones de esto se pueden ver directamente
+en la «página del proyecto» en GitHub, <a href="https://github.com/JAvilp/apsimon">https://github.com/JAvilp/apsimon</a></p>
+
+<h2>Propuestas de futuro</h2>
+
+<p>Siempre que el tiempo lo permitiese, una vez teminada esta parte, podríamos dar paso a:</p>
+
+<ul>
+<li>Dar soporte al layout horizontal.</li>
+<li>Implementar una pantalla inicial.</li>
+<li>Añadir niveles de dificultad (por ejemplo, con un límite de tiempo).</li>
+<li>Posibilidad de multijugador («challenge», duelos).</li>
+<li>Implementar una presentación 3D.</li>
+<li>...</li>
+</ul>
+        </section>
+
+        <aside id="sidebar">
+          <a href="https://github.com/dgdavid/apsimon/zipball/master" class="button">
+            <small>Download</small>
+            .zip file
+          </a>
+          <a href="https://github.com/dgdavid/apsimon/tarball/master" class="button">
+            <small>Download</small>
+            .tar.gz file
+          </a>
+
+          <p class="repo-owner"><a href="https://github.com/dgdavid/apsimon"></a> is maintained by <a href="https://github.com/dgdavid">dgdavid</a>.</p>
+
+          <p>This page was generated by <a href="pages.github.com">GitHub Pages</a> using the Architect theme by <a href="http://twitter.com/jasonlong">Jason Long</a>.</p>
+        </aside>
+      </div>
+    </div>
+
+  
+  </body>
+</html>
