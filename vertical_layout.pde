@@ -15,10 +15,10 @@ class VerticalLayout {
   }
 
   void show_tittle() {
-    if(previous_level != level) {
+    /*if(previous_level != level) {
       previous_level = level;
       new_title_color();
-    }
+    }*/
     fill(title_color);
     textSize(50);
     textAlign(CENTER);
