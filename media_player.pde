@@ -20,6 +20,9 @@ class  MediaPlayer {
     if(IN_ANDROID) {
       ap_mediaplayer.setMediaFile(track_filename);
     } else {
+      if (track != null) {
+        track.close();
+      }
       track = minim.loadFile(track_filename);
     }
   }
@@ -28,9 +31,8 @@ class  MediaPlayer {
     if(IN_ANDROID) {
       ap_mediaplayer.start();
     } else {
+      //track.rewind();
       track.play();
-      //track.close();
-      //minim.stop()
     }
   }
 
