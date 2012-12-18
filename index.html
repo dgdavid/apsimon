@@ -13,13 +13,13 @@
     <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
     <![endif]-->
 
-    <title>Apsimon by dgdavid</title>
+    <title>Simon Says for Android with Processing by dgdavid</title>
   </head>
 
   <body>
     <header>
       <div class="inner">
-        <h1>Apsimon</h1>
+        <h1>Simon Says for Android with Processing</h1>
         <h2></h2>
         <a href="https://github.com/dgdavid/apsimon" class="button"><small>View project on</small>GitHub</a>
       </div>
@@ -30,106 +30,154 @@
         <section id="main-content">
           <h1>PGL: APSimon, Simon says para Android sobre Processing</h1>
 
-<p>:Author:    Javier Morales y David Díaz
-:Date:      24/11/2012</p>
+<hr><h2>Acerca de este documento</h2>
 
-<h2>Acerca de este documento</h2>
+<p>La presente documentación recoge, en líneas generales, el resultado final del
+proyecto de «Desarrollo de Juegos en 2D» de la asignatura de «Programación
+Multimedia y Dispositivos Móviles» (tutorizada por D. Rafael Ascanio Perera) en
+el IES El Rincon [<a href="http://ieselrincon.org/">http://ieselrincon.org/</a>], llevado a cabo durante el curso
+académico 2012/2013 del Ciclo de Formación Profesional «Desarrollo de
+Aplicaciones Multiplataforma».</p>
 
-<p>La intención de este documento es servir de «dossier» en el que recoger las
-ideas iniciales, borrador y objetivo  para el proyecto de «Desarrollo de Juegos
-en 2D» de la asignatura de «Programación Multimedia y Dispositivos Móviles».</p>
+<p>En algunas ocasiones se hacen referencias a «la documentación anterior» o
+«dosier anterior» para referirse al primer documento entregado para el mismo
+proyecto y misma asignatura, en el cual se hacía una descripción y
+planificación/previsión de los objetivos del mismo.</p>
 
-<h2>El proyecto</h2>
+<hr><h2>El proyecto</h2>
 
-<h3>La idea</h3>
+<h3>La idea inicial</h3>
 
-<p>Se intentará implementar el conocido y popular juego de los 80
+<p>Implementar el conocido y popular juego de los 80
 <a href="http://en.wikipedia.org/wiki/Simon_(game">«Simon says»</a>), creado por Ralph Baer
 en 1978, para la plataforma Android haciendo uso del lenguaje de programación
 <a href="http://processing.org">«Processing»</a>, distribuido bajo licencia GNU/GPL.</p>
 
 <h3>Objetivo</h3>
 
-<p>Disponer, al menos, de una versión básica del juego consistente en repetir la
-secuencia aleatoria de N elementos de 4 posibles, generada por el programa y
-representada visual y acústicamente. </p>
-
-<p>Con cada acierto el nivel de dificultad, entendido como la longitud de la
-secuencia, se irá incrementando dando el juego por finalizado al primer fallo.</p>
+<p>El propósito de la creación de este software no ha ido más allá de los fines
+didácticos, tal y como se declaraba en el apartado «alcance» del documento
+presentado con anterioridad a éste [] centrándose más en la parte técnica que
+en la visión comercial.</p>
 
 <h3>Alcance</h3>
 
-<p>Dado que se trata de un proyecto con fines didácticos, la utilidad del mismo no
-pretende ir más allá de su uso en clase para ganar experiencia y bagaje en el
-uso del lenguaje utilizado, resolución de problemas durante el desarrollo e
-interacción, desde el punto de vista del desarrollo, con el terminal.</p>
-
-<p>No obstante, se pone al alcance de toda persona que quiera hacer uso del mismo,
-cualesquiera sean sus fines, desde el mismo instante en el que se decide hacer
-uso de <a href="http://github.com">GitHub</a> como «repositorio origen»
-[<a href="https://github.com/JAvilp/apsimon">https://github.com/JAvilp/apsimon</a>], permitiendo así el acceso al proyecto y su
-evolución durante el desarrollo del mismo.</p>
+<p>El alcance de este proyecto no dista mucho del propuesto inicialmente: servir
+de iniciación al desarrollo de software haciendo uso de distintas técnicas y
+herramientas.</p>
 
 <h2>Descripción general</h2>
 
 <h3>Perspectiva del proyecto</h3>
 
-<p>El usuario interactuará con el terminal haciendo uso de la pantalla táctil, a
-fin de reproducir la secuencia sugerida.</p>
+<p>Si bien la perspectiva inicial del proyecto se centraba en la interacción del
+usuario con la pantalla táctil de su terminal móvil, finalmente ésta ha sido
+relegada a un segundo plano para centrarse más, a nivel de desarrollo, en la
+estructura y codificación del mismo.</p>
 
 <h3>Funciones de la aplicación</h3>
 
-<p>La aplicación ha de generar una secuencia aleatoria de N elementos en base a 4
-posibles que posteriormente representará visual y acústicamente.</p>
+<p>La función principal de la aplicación no es otra que generar una secuencia
+aleatoria de N elementos en base a 4 posibles que, posteriormente, presentará
+al usuario de forma visual y acústica con el fin de que éste sea capaz de
+reproducirla, incrementándose la longitud de la misma en 1 elemento con cada
+acierto del usuario.</p>
 
-<p>Además, mostrará al usuario, haciendo el mayor uso posible de las funciones
-provistas en la API de Processing:</p>
+<h3>Estructura de la aplicación</h3>
+
+<p>Para conseguir la función descrita se ha estructurado el código de la
+aplicación de acuerdo a:</p>
 
 <ul>
-<li>Información del nivel actual (de 1 en adelante).</li>
-<li>Información de la puntuación actual (de 1 en adelante, siendo un
-«acumulador» de los aciertos, contados éstos en base a la longitud de la
-secuencia).</li>
-<li>Un «tablero», compuesto de los 4 elementos posibles de la secuencia, con el
-que interactuar a fin de conseguir el objetivo.</li>
-<li>Texto informativo, de acierto o fracaso, según corresponda.</li>
+<li>
+<p>Programación Orientada a Objetos: a excepción del fichero principal de la
+aplicación, que por imposición ha de tener el mismo nombre que el
+directorio y ser estructurado, el resto de ficheros de la aplicción se
+corresponde con «objetos» que representan los distintos «actores» o
+«entidades» que dan forma a la misma, y que son:</p>
+
+<ul>
+<li>Game, que representa al juego en sí.</li>
+<li>Board, para la construcción del tablero.</li>
+<li>Board_Button, para instanciar cada
+uno de los 4 «botones» que se corresponden con cada elemento de la
+secuencia, representado por un color y un sonido</li>
+<li>Player, que se corresponde con el jugador.</li>
+<li>VerticalLayout, encargado de la disposición de todos los elementos
+gráficos, al menos para la orientación vertical</li>
+<li>MediaPlayer, que vendría a ser una «wrappe» de las librerías de sonido,
+según corresponda uno u otra dependiendo del sistema/máquina virtual en
+el que se está ejecutando. [Finalmente no termina de funcionar del todo bien]</li>
+<li>SequenceThread. Se trata de un objeto «especial» que representa un hilo
+de ejecución y que es necesario para poder mostrar los elementos de la
+secuencia «iluminándose», ya que de lo contrario no habría tiempo de verlos
+puesto que el método «draw()» de Processing «dibuja» la salida una vez que ha
+finalizado toda la ejecución del código que hay dentro del mismo.</li>
+</ul>
+</li>
+<li>
+<p>Utilización de patrones de diseños: concretamente dándole un enfoque MVC
+(Modelo Vista Controlador), sin analizar más profundamente qué otros
+patrones se podían haber aplicado, para así mantener, de alguna forma, el
+código más limpio y ordenado. </p>
+
+<ul>
+<li>Controlador: apsimon.pde, el «punto de entrada» de la aplicación.
+Pensamos también que, en cierta manera e implícitamente, se está usando aquí el
+patrón Singleton.</li>
+<li>Modelos: a pesar de que no hay persistencia, nuestros modelos se podrían
+corresponder con Game, Player Board y BoardButton, si bien estos dos últimos
+pudieran quedar un poco «descolgados» de este enfoque</li>
+<li>Vista: aquí tenemos a VerticalLayout y, si los hubiera, todas las otras
+representaciones gráficas de la aplicación. Sin ir más lejos, la inexistente
+«HorizontalLayout». En este punto cabe destacar que debería existir, quizás
+y dado que al fin y al cabo Prossecing no deja apoyarse en Java, una Interfaz
+«Layout» encargada de definir qué métodos ha de implementar todo «XYZLayout»
+existente.</li>
+<li>Se nos quedarían fuera el hilo (SequenceThread) y el «wrapper» de audio
+(MediaPlayer) ya que ambos tienen algo de «vista» (a pesar de que para el caso
+de media player la representación sea acústica) y de «modelo», pues de alguna
+forman trabajan con datos (elementos de la secuencia el primero y ficheros de
+audio el segundo) a la vez que los representan.</li>
+</ul>
+</li>
+</ul><p>Aunque se trata de pequeños aspectos más funcionales que estructurales, cabe anotar que</p>
+
+<ul>
+<li>La aplicación está, de forma general, en modo «noLoop()», para evitar un
+uso innecesario del procesador.</li>
+<li>La excepción a lo anterior la encontramos en el hilo «Sequence Thread», que
+precisamente hace uso de «loop()» mientras está «mostrando» la secuencia.</li>
+<li>Si bien a posteriori hemos sabido, por la aportación de un compañero en
+clase, de la posibilidad de usar «sleep» dentro de un hilo, hemos decidido
+dejar el código que hacía esta función (almacenar el tiempo en ejecución y
+esperar a que éste se hubieran incrementado en X).</li>
+<li>Todas las llamadas a «redraw()» se hacen en el controlador (apsimon.pde)</li>
 </ul><h3>Presentación de la aplicación</h3>
 
-<p>La presentación se hará mediante una interfaz limpia y sencilla que ha de
-adaptarse, en la medida de lo posible, al tamaño del dispositivo en el que se
-esté ejecutando, dando mayor relevancia a los elementos con los que ha de
-interactuar el usuario. </p>
+<p>Respecto a lo recogido en el dosier anterior, la presentación de la aplicación
+se ha quedado sólo en «layout» vertical, manteniéndose la disposición propuesta
+para el mismo, incluyendo la subdivisión de la superficie disponible en una
+«rejilla» o grid imaginario para la distribución uniforme de los elementos
+independientemente del área de dicha superficie.</p>
 
-<p>Para ello se ha decidido que el «lienzo» sobre el que se apoya Processing
-coincida con el tamaño del disponible, subdividiéndolo mediante «una rejilla»
-de 8 filas y 6 columnas. Esto debería permitir un mejor control sobre el
-posicionamiento de los elementos así como un «redimendionado» dinámico. </p>
+<p>Como se comentaba en el punto anterior, la idea sería disponer a nivel de
+clases de una Interfaz que defina una representación abtracta del lienzo para
+que sea extendida por todas y cada una de las representaciones que se deseen
+implementar.</p>
 
-<p>.Boceto del Layout subdivido en 8 filas y 6 columnas</p>
+<h3>Recursos utilizados durante el desarrollo</h3>
 
-<p>image::images/apsimon_layout_divide_into_8rows_and_6cols.png["Boceto del layout subdivido en rejilla de 8 filas y 6 columnas"]</p>
-
-<p>.Disposición de los elementos en el layout vertical
-image::images/apsimon_elements_in_vertical_layout.png["Disposición de los elementos en el layout vertical"]</p>
-
-<p>.Disposición de los elementos en el layout horizontal 
-image::images/apsimon_elements_in_horizontal_layout.png["Disposición de los elementos en el layout horizontal"]</p>
-
-<h3>Características del usuario</h3>
-
-<p>Inicialmente, dado el referido carácter «práctico»/didáctico del proyecto,
-el perfil del «usuario final» coincide con el perfil de los desarrolladores:
-alumnos en prácticas. Por lo tanto, se les presupone usuarios avanzados, sin
-dificultad para desenvolverse con su terminal móvil.</p>
-
-<h3>Recursos para el desarrollo</h3>
-
-<p>Además del uso del ya mencionado lenguaje de programación, Processing, serán
-utilizados:</p>
+<p>Además de, obviamente, el lenguaje de programación utilizado (Processing), se
+ha hecho uso de los siguientes recursos</p>
 
 <ul>
-<li>La librería <a href="http://code.google.com/p/apwidgets/">APWidgets</a>, para el trabajo
-con el audio y algunos otros elementos.</li>
+<li>
+<a>APWidgets</a>, para el trabajo
+con el audio y algunos otros elementos en Android.</li>
+<li>
+<a>Minim</a>, para el
+trabajo con audio haciendo uso de JavaSound API.</li>
 <li>La clase
 <a href="http://docs.oracle.com/javase/6/docs/api/java/util/Random.html">Random</a> para
 la generación aleatoria de la secuencia.</li>
@@ -139,70 +187,101 @@ se está y se estará trabajando en un solo equipo, por lo que la información
 del «commiter» no está vinculada al trabajo/peso real de cada miembro del
 equipo], control de versiones y «sincronización» con el repositorio alojado
 en GitHub.</li>
+<li>
+<a href="http://github.com">Github</a> para alojar el repositorio remoto del proyecto.</li>
 </ul><h3>Otros recursos</h3>
 
 <ul>
 <li>
-<a href="http://soundcloud.com">SoundCloud</a> para la búsqueda y elección de las pistas
-de audio que sean necesarias.</li>
+<a href="http://soundcloud.com">SoundCloud</a> y <a href="http://www.soundgator.com/">SoundGator</a>
+para la búsqueda y elección de las pistas de audio que sean necesarias.</li>
 <li>
 <a href="http://www.methods.co.nz/asciidoc/">Asciidoc</a> para la generación de este
 documento.</li>
 <li>
-<a href="https://moqups.com/">Moqups</a> para la creación de mockups</li>
+<a href="https://moqups.com/">https://moqups.com/</a> para la creación de mockups</li>
+<li>
+<a href="http://wiki.processing.org/w/Main_Page">Wiki de Processing</a>, para información técnica.</li>
 <li>
 <a href="http://www.openprocessing.org">OpenProcessing</a>, como «fuente de
-conocimiento» en la que «ojear» algo de código.
-[<a href="http://www.openprocessing.org/sketch/20312">http://www.openprocessing.org/sketch/20312</a>]</li>
+conocimiento» (aunque finalmente sólo se ha codigo el código que general el
+background, haciendo uso de la función «noise()»)</li>
 <li>
-<a href="http://www.learningprocessing.com">http://www.learningprocessing.com</a> para visualizar ejemplos con enfoques
+<a href="http://www.learningprocessing.com">LearningProcessing</a> para visualizar ejemplos con enfoques
 orientados a objeto (POO).</li>
 </ul><h2>Estado actual</h2>
 
-<h3>Presentación y mockups</h3>
+<p>A pesar de tratarse de una aplicación experimental y no terminada, centrada más
+en el aprendizaje a nivel de desarrollo que en el acabado final de cara al
+usuario, se dispone a día de, básicamente, la posibilidad de mostrar una
+secuencia y recoger la recreada por el usuario, aumentando el nivel en caso de
+acierto.</p>
 
-<p>A pesar de que aún no se tiene el layout completamente implementado, los
-siguientes mockups dan idea visual de como quedaría la aplicación
-definitivamente en el terminal.</p>
+<h3>Presentación</h3>
 
-<p>.Pantalla con todos los elementos/colores «desactivados» (no presionados o no sugeridos por la máquina)
-image::images/apsimon_mockup_all_buttons_deactivated.png["Todos los botones «desactivados"]</p>
-
-<p>.Pantalla con un elemento/color/botón activado (el rojo)
-image::images/apsimon_mockup_one_button_activated.png["Un botón activado"]</p>
-
-<p>.Pantalla de «Siguiente nivel»
-image::images/apsimon_mockup_next_level.png["Siguiente nivel"]</p>
-
-<p>.Pantalla de «Game Over!»
-image::images/apsimon_mockup_game_over.png["Game Over"]</p>
-
-<h3>Clases y objetos</h3>
-
-<p>En un primer brainstorming pensamos que las clases a implementar podrían ser:</p>
+<p>A nivel de presentación se dispone a día de hoy de un layout vertical que nos muestra </p>
 
 <ul>
-<li>Game, que representaría al juego en sí.</li>
-<li>Board, para la construcción del tablero.</li>
-<li>ColouredButton, para instanciar cada
-uno de los 4 «cuadrantes» que se encargarán de autoiluminarse y emitir sonido
-cuando son presionados.</li>
-<li>CPU, que sería el encargado de generar la secuencia aleatoria que el
-usuario debe repetir.</li>
-<li>Player, que se corresponde con el jugador.</li>
-</ul><p>Las primeras (y sucesivas) implementaciones de esto se pueden ver directamente
-en la «página del proyecto» en GitHub, <a href="https://github.com/JAvilp/apsimon">https://github.com/JAvilp/apsimon</a></p>
+<li>Nombre/Rótulo de la aplicación</li>
+<li>Información del nivel actual (de 1 en adelante).</li>
+<li>Información de la puntuación actual (de 0 en adelante, siendo un
+«acumulador» de los aciertos, contados éstos en base a la longitud de la
+secuencia).</li>
+<li>Un «tablero», compuesto de los 4 elementos posibles de la secuencia, con el
+que interactuar a fin de conseguir el objetivo.</li>
+<li>«Pantalla de inicio», que no es más que una leyenda en la pantalla con las
+instrucciones para comenzar (hacer click)</li>
+<li>«Pantalla de Game Over», en la que se muestra información de nivel y puntos
+obtenidos y la opción para volver a empezar</li>
+</ul><h3>Fallos conocidos</h3>
 
-<h2>Propuestas de futuro</h2>
+<p>A pesar de los distintos intentos realizados, a la fecha actual y con el tiempo
+dedicado, no se ha conseguido tener una aplicación que se comporte de forma
+estable tanto en Android como en otro sistema operativo sobre una máquina
+virtual de Java. Esto es así principalmente por incompatibilidades entre
+librerías, lo que no nos ha permitido poder incluirlas todas para
+posteriormente usar unas u otras según el soporte en el que se esté ejecutando,
+que era el objetivo de, por ejemplo, «media_player.pde».</p>
 
-<p>Siempre que el tiempo lo permitiese, una vez teminada esta parte, podríamos dar paso a:</p>
+<p>El sonido, en Java, sólo se reproduce la primera vez y, en algunas otras
+ocasiones, de forma aleatoria. Esto podría ser porque se necesite un objeto
+«AudioPlayer» para cada sonido que se vaya a reproducir, si bien es cierto que
+se hicieron algunas pruebas sin éxito.</p>
+
+<p>Además, en las últimas pruebas han ocurrido ocasioalmente desbordamiento de
+array (ArrayIndexOutOfBoundsException) al mostrar la secuencia propuesta al
+usuario. Debe estar relacionado con algunos de los últimos cambios, pero aún no
+lo hemos localizado.</p>
+
+<h3>Mejoras a corto plazo</h3>
+
+<p>A pesar de la constante «obsesión» en trabajar de cara a la obtención de un
+código limpio, ordenado y con cierta «calidad», creemos que unas tempranas
+refactorizaciones podrían ser</p>
+
+<ul>
+<li>Utilizar variables/constantes para el cálculo de la diferencia de tiempo
+(millis() - lastTime &lt; DELAY), para el frameRate, tamaños de textos...</li>
+<li>Utilizar el «coding style» o «code conventions» de Java, para ser más
+homogéneos y ofrecer un código «más legible» a programadores del lenguaje.</li>
+<li>Utilizar Thread.sleep (manteniendo el DELAY en variable) a fin de reducir
+así el código de SequenceThread.</li>
+<li>Mejorar la estabilidad y fluidez.</li>
+</ul><h3>Mejoras a medio plazo</h3>
+
+<p>A medio plazo, la cantidad de mejoras que se podrían hacer serían casi
+innumerables, pero listando las más importantes tendríamos</p>
 
 <ul>
 <li>Dar soporte al layout horizontal.</li>
 <li>Implementar una pantalla inicial.</li>
-<li>Añadir niveles de dificultad (por ejemplo, con un límite de tiempo).</li>
+<li>Implementar las pantallas de cambio de nivle.</li>
+<li>Mejorar la interfaz gráfica (usando elementos 3D, brillo, iluminación...)</li>
+<li>Añadir niveles de dificultad (por ejemplo, con un límite de tiempo o
+decrementando el DELAY de la secuencia con el paso de nivel).</li>
+<li>Añadir un top de «mejores puntuaciones».</li>
+<li>Añadir preferencias de usuario.</li>
 <li>Posibilidad de multijugador («challenge», duelos).</li>
-<li>Implementar una presentación 3D.</li>
 <li>...</li>
 </ul>
         </section>
@@ -224,6 +303,16 @@ en la «página del proyecto» en GitHub, <a href="https://github.com/JAvilp/aps
       </div>
     </div>
 
-  
+            <script type="text/javascript">
+            var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+            document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+          </script>
+          <script type="text/javascript">
+            try {
+              var pageTracker = _gat._getTracker("*  * * * ");
+            pageTracker._trackPageview();
+            } catch(err) {}
+          </script>
+
   </body>
 </html>
