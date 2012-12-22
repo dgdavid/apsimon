@@ -1,34 +1,37 @@
 <!DOCTYPE html>
 <html>
+
   <head>
-    <meta charset='utf-8'>
-    <meta http-equiv="X-UA-Compatible" content="chrome=1">
-    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-    <link href='https://fonts.googleapis.com/css?family=Architects+Daughter' rel='stylesheet' type='text/css'>
-    <link rel="stylesheet" type="text/css" href="stylesheets/stylesheet.css" media="screen" />
-    <link rel="stylesheet" type="text/css" href="stylesheets/pygment_trac.css" media="screen" />
-    <link rel="stylesheet" type="text/css" href="stylesheets/print.css" media="print" />
+    <meta charset='utf-8' />
+    <meta http-equiv="X-UA-Compatible" content="chrome=1" />
+    <meta name="description" content="Simon for Android with Processing : " />
 
-    <!--[if lt IE 9]>
-    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
-    <![endif]-->
+    <link rel="stylesheet" type="text/css" media="screen" href="stylesheets/stylesheet.css">
 
-    <title>Simon for Android with Processing by dgdavid</title>
+    <title>Simon for Android with Processing</title>
   </head>
 
   <body>
-    <header>
-      <div class="inner">
-        <h1>Simon for Android with Processing</h1>
-        <h2></h2>
-        <a href="https://github.com/dgdavid/apsimon" class="button"><small>View project on</small>GitHub</a>
-      </div>
-    </header>
 
-    <div id="content-wrapper">
-      <div class="inner clearfix">
-        <section id="main-content">
-          <h1>PGL: APSimon, Simon para Android sobre Processing</h1>
+    <!-- HEADER -->
+    <div id="header_wrap" class="outer">
+        <header class="inner">
+          <a id="forkme_banner" href="https://github.com/dgdavid/apsimon">View on GitHub</a>
+
+          <h1 id="project_title">Simon for Android with Processing</h1>
+          <h2 id="project_tagline"></h2>
+
+            <section id="downloads">
+              <a class="zip_download_link" href="https://github.com/dgdavid/apsimon/zipball/master">Download this project as a .zip file</a>
+              <a class="tar_download_link" href="https://github.com/dgdavid/apsimon/tarball/master">Download this project as a tar.gz file</a>
+            </section>
+        </header>
+    </div>
+
+    <!-- MAIN CONTENT -->
+    <div id="main_content_wrap" class="outer">
+      <section id="main_content" class="inner">
+        <h1>PGL: APSimon, Simon para Android sobre Processing</h1>
 
 <hr><h2>Acerca de este documento</h2>
 
@@ -215,6 +218,8 @@ usuario, se dispone a día de, básicamente, la posibilidad de mostrar una
 secuencia y recoger la recreada por el usuario, aumentando el nivel en caso de
 acierto.</p>
 
+<p><img src="http://apsimon.eu.pn/presentacion/images/pantalla_de_inicio.png" alt="Pantalla de inicio de la aplicación"></p>
+
 <h3>Presentación</h3>
 
 <p>A nivel de presentación se dispone a día de hoy de un layout vertical que nos muestra </p>
@@ -231,7 +236,9 @@ que interactuar a fin de conseguir el objetivo.</li>
 instrucciones para comenzar (hacer click)</li>
 <li>«Pantalla de Game Over», en la que se muestra información de nivel y puntos
 obtenidos y la opción para volver a empezar</li>
-</ul><h3>Fallos conocidos</h3>
+</ul><p><img src="http://apsimon.eu.pn/presentacion/images/pantalla_mostrando_secuencia.png" alt="Aplicación mostrando una secuencia"></p>
+
+<h3>Fallos conocidos</h3>
 
 <p>A pesar de los distintos intentos realizados, a la fecha actual y con el tiempo
 dedicado, no se ha conseguido tener una aplicación que se comporte de forma
@@ -250,6 +257,8 @@ se hicieron algunas pruebas sin éxito.</p>
 array (ArrayIndexOutOfBoundsException) al mostrar la secuencia propuesta al
 usuario. Debe estar relacionado con algunos de los últimos cambios, pero aún no
 lo hemos localizado.</p>
+
+<p><img src="http://apsimon.eu.pn/presentacion/images/pantalla_de_gameover.png" alt="Game Over"></p>
 
 <h3>Mejoras a corto plazo</h3>
 
@@ -273,7 +282,7 @@ innumerables, pero listando las más importantes tendríamos</p>
 <ul>
 <li>Dar soporte al layout horizontal.</li>
 <li>Implementar una pantalla inicial.</li>
-<li>Implementar las pantallas de cambio de nivle.</li>
+<li>Implementar las pantallas de cambio de nivel.</li>
 <li>Mejorar la interfaz gráfica (usando elementos 3D, brillo, iluminación...)</li>
 <li>Añadir niveles de dificultad (por ejemplo, con un límite de tiempo o
 decrementando el DELAY de la secuencia con el paso de nivel).</li>
@@ -282,26 +291,18 @@ decrementando el DELAY de la secuencia con el paso de nivel).</li>
 <li>Posibilidad de multijugador («challenge», duelos).</li>
 <li>...</li>
 </ul>
-        </section>
-
-        <aside id="sidebar">
-          <a href="https://github.com/dgdavid/apsimon/zipball/master" class="button">
-            <small>Download</small>
-            .zip file
-          </a>
-          <a href="https://github.com/dgdavid/apsimon/tarball/master" class="button">
-            <small>Download</small>
-            .tar.gz file
-          </a>
-
-          <p class="repo-owner"><a href="https://github.com/dgdavid/apsimon"></a> is maintained by <a href="https://github.com/dgdavid">dgdavid</a>.</p>
-
-          <p>This page was generated by <a href="pages.github.com">GitHub Pages</a> using the Architect theme by <a href="http://twitter.com/jasonlong">Jason Long</a>.</p>
-        </aside>
-      </div>
+      </section>
     </div>
 
-            <script type="text/javascript">
+    <!-- FOOTER  -->
+    <div id="footer_wrap" class="outer">
+      <footer class="inner">
+        <p class="copyright">Simon for Android with Processing maintained by <a href="https://github.com/dgdavid">dgdavid</a></p>
+        <p>Published with <a href="http://pages.github.com">GitHub Pages</a></p>
+      </footer>
+    </div>
+
+              <script type="text/javascript">
             var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
             document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
           </script>
@@ -311,6 +312,7 @@ decrementando el DELAY de la secuencia con el paso de nivel).</li>
             pageTracker._trackPageview();
             } catch(err) {}
           </script>
+
 
   </body>
 </html>
